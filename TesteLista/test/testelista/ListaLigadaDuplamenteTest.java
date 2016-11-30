@@ -43,13 +43,14 @@ public class ListaLigadaDuplamenteTest {
     @Test
     public void testAdd_GenericType() {
         System.out.println("add");
-        Object e = null;
-        ListaLigadaDuplamente instance = new ListaLigadaDuplamente();
-        boolean expResult = false;
+        String e ="a";
+        String a = "1";
+        List<String> instance = new ListaLigadaDuplamente();
+        boolean expResult =true;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -67,34 +68,7 @@ public class ListaLigadaDuplamenteTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of add method, of class ListaLigadaDuplamente.
-     */
-    @Test
-    public void testAdd_int_GenericType() {
-        System.out.println("add");
-        int i = 0;
-        Object e = null;
-        ListaLigadaDuplamente instance = new ListaLigadaDuplamente();
-        instance.add(i, e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of remove method, of class ListaLigadaDuplamente.
-     */
-    @Test
-    public void testRemove_int() {
-        System.out.println("remove");
-        int i = 0;
-        ListaLigadaDuplamente instance = new ListaLigadaDuplamente();
-        Object expResult = null;
-        Object result = instance.remove(i);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
+    
     
 }
