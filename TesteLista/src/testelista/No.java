@@ -30,6 +30,12 @@ public class No<T> implements Serializable{
        this.proximo=proximo;
     }
 
+   public No(T info) {
+        this.proximo = null;
+        this.anterior = null;
+        this.info = info;
+    }
+
     
 
 /**

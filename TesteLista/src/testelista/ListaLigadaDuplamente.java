@@ -43,7 +43,22 @@ public class ListaLigadaDuplamente<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    No p = new No(null);
+
+        if (o == null) {
+
+            throw new NullPointerException("Objeto é nulo, não é possivél verificar na lista.");
+        } else {
+            No aux = this.inicio;
+            while ((aux != null) || (aux.getProximo() != this.inicio)) {
+                if (aux.getInfo() == o) {
+                    return true;
+                }
+                aux = aux.getProximo();
+            }
+            return false;
+        }
     }
 
     @Override
@@ -214,9 +229,27 @@ public class ListaLigadaDuplamente<T> implements List<T> {
 
 
 @Override
-        public T set(int i, T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        public T set(int i, T e) { 
+            
+            if (e == null) {
+
+            throw new NullPointerException("Objeto é nulo, não pode ser salvo na lista.");
+        } else if (i < 0 || i >= size()) {
+
+            throw new IndexOutOfBoundsException("Valor fora do intervalo válido.");
+
+        } else {
+            No aux = this.getInicio();
+            Object obj;
+
+            for (int j = 0; j < i; j++) {
+                aux = aux.getAnterior();
+
+            }
+            obj = aux.getInfo();
+            aux.setInfo(e);
+            return (T) obj;
+        } }
 
     @Override
         public void add(int i, T e) {
