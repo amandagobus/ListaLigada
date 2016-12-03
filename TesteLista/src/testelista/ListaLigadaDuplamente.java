@@ -1,11 +1,12 @@
 package testelista;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ListaLigadaDuplamente<T> implements List<T> {
+public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator {
 
     private No inicio;
     private No fim;
@@ -18,10 +19,6 @@ public class ListaLigadaDuplamente<T> implements List<T> {
         this.indice = 0;
         this.size = 0;
     }
-    
-    
-    
-    
 
     @Override
     public int size() {
@@ -43,8 +40,8 @@ public class ListaLigadaDuplamente<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-    
-    No p = new No(null);
+
+        No p = new No(null);
 
         if (o == null) {
 
@@ -61,11 +58,13 @@ public class ListaLigadaDuplamente<T> implements List<T> {
         }
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    @Override 
+   public Iterator iterator() {
+        indice = 0;
+       return this;
+   }
+   
+   
     @Override
     public Object[] toArray() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -98,23 +97,23 @@ public class ListaLigadaDuplamente<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-       
+
         No aux;
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
-          
+
             aux = this.inicio;
             while (aux != this.fim) {
-                if(o == aux.getInfo()){
-                    No anterior= null;
+                if (o == aux.getInfo()) {
+                    No anterior = null;
                     No proximo = null;
-                }else{
-                    
+                } else {
+
                     aux = aux.getProximo();
-                    
-            }
-            
+
+                }
+
                 No anterior = aux.getAnterior();
                 No proximo = aux.getProximo();
                 anterior.setProximo(proximo);
@@ -122,7 +121,7 @@ public class ListaLigadaDuplamente<T> implements List<T> {
                 this.size--;
                 this.decrementarLista(proximo);
                 return true;
-           
+
             }
         }
         return false;
@@ -226,12 +225,10 @@ public class ListaLigadaDuplamente<T> implements List<T> {
         this.size = size;
     }
 
+    @Override
+    public T set(int i, T e) {
 
-
-@Override
-        public T set(int i, T e) { 
-            
-            if (e == null) {
+        if (e == null) {
 
             throw new NullPointerException("Objeto é nulo, não pode ser salvo na lista.");
         } else if (i < 0 || i >= size()) {
@@ -249,23 +246,23 @@ public class ListaLigadaDuplamente<T> implements List<T> {
             obj = aux.getInfo();
             aux.setInfo(e);
             return (T) obj;
-        } 
-        
         }
 
+    }
+
     @Override
-        public void add(int i, T e) {
+    public void add(int i, T e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-        public T remove(int i) {
+    public T remove(int i) {
         T aux1;
         No aux = null;
-         if (this.isEmpty()) {
+        if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
-             aux =(No) get(i);
+            aux = (No) get(i);
             /*aux = this.inicio;
             while (aux != this.fim) {
                 i =  aux.getImovel();
@@ -276,43 +273,43 @@ public class ListaLigadaDuplamente<T> implements List<T> {
             }
             i = (Imovel) aux.getImovel();
             if (i.getCodigo() == im.getCodigo()) {*/
-                No anterior = aux.getAnterior();
-                No proximo = aux.getProximo();
-                anterior.setProximo(proximo);
-                proximo.setAnterior(anterior);
-                this.size--;
-                this.decrementarLista(proximo);
-                return (T)aux;
-         }
-        
+            No anterior = aux.getAnterior();
+            No proximo = aux.getProximo();
+            anterior.setProximo(proximo);
+            proximo.setAnterior(anterior);
+            this.size--;
+            this.decrementarLista(proximo);
+            return (T) aux;
+        }
+
     }
-        
 
     @Override
-        public int indexOf(Object o) {
+    public int indexOf(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-        public int lastIndexOf(Object o) {
+    public int lastIndexOf(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-        public ListIterator<T> listIterator() {
+    public ListIterator<T> listIterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-        public ListIterator<T> listIterator(int i) {
+    public ListIterator<T> listIterator(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-        public List<T> subList(int i, int i1) {
+    public List<T> subList(int i, int i1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-     /**
+
+    /**
      * Método que decrementa a Lista
      *
      * @param n
@@ -346,5 +343,16 @@ public class ListaLigadaDuplamente<T> implements List<T> {
 
     }
 
+    @Override
+    public boolean hasNext() {
+        return indice < size;
+    }
+
+    @Override
+    public T next() {
+        T a = get(indice++);
+        return a;
+
+    }
 
 }
