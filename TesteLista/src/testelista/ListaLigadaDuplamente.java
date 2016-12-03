@@ -58,13 +58,12 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         }
     }
 
-    @Override 
-   public Iterator iterator() {
+    @Override
+    public Iterator iterator() {
         indice = 0;
-       return this;
-   }
-   
-   
+        return this;
+    }
+
     @Override
     public Object[] toArray() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -285,8 +284,49 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     }
 
     @Override
+
     public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (o == null) {
+
+            throw new NullPointerException("Objeto informado é nulo");
+
+        } else if (isEmpty()) {
+
+            throw new NullPointerException("Lista vazia");
+        } else {
+
+            int cont = 0;
+
+            if (inicio.getInfo().equals(o)) {
+
+                return cont;
+
+            }
+
+            if (!(inicio.getAnterior().getInfo().equals(inicio))) {
+                No aux = inicio.getProximo();
+
+                cont++;
+
+                while (!aux.equals(inicio)) {
+
+                    if (aux.getInfo().equals(o)) {
+
+                        return cont;
+                    }
+                    aux = aux.getProximo();
+
+                    cont++;
+
+                }
+
+            }
+
+        }
+
+        return -1;
+
     }
 
     @Override
