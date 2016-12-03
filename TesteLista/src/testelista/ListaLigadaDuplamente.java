@@ -6,6 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ *
+ * @authores Amanda, Guilherme, Julielen, Wilson
+ * @param <T>
+ */
 public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator {
 
     private No inicio;
@@ -236,6 +241,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         this.size = size;
     }
 
+    
     @Override
     public T set(int i, T e) {
 
