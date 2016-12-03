@@ -24,17 +24,27 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         this.indice = 0;
         this.size = 0;
     }
-
+/**
+ * 
+ * @return 
+ */
     @Override
     public int size() {
         return this.getSize();
     }
-
+/**
+ * 
+ * @return 
+ */
     @Override
     public boolean isEmpty() {
         return this.getInicio() == null;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public T getLast() {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
@@ -42,7 +52,12 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             return (T) getFim().getInfo();
         }
     }
-
+    
+    /**
+     * 
+     * @param o
+     * @return 
+     */
     @Override
     public boolean contains(Object o) {
 
@@ -62,7 +77,11 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             return false;
         }
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public Iterator iterator() {
         indice = 0;
@@ -99,7 +118,11 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         this.setSize(this.getSize() + 1);
         return true;
     }
-
+    /**
+     * 
+     * @param o
+     * @return 
+     */
     @Override
     public boolean remove(Object o) {
 
@@ -203,8 +226,13 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     public void setSize(int size) {
         this.size = size;
     }
-
     
+    /**
+     * 
+     * @param i
+     * @param e
+     * @return 
+     */
     @Override
     public T set(int i, T e) {
 
@@ -254,37 +282,6 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
 		numElements++;
 
 	}
-
-    /*@Override
-    public T remove(int i) {
-        T aux1;
-        No aux = null;
-        if (this.isEmpty()) {
-            throw new IllegalArgumentException("Lista vazia");
-        } else {
-            aux = (No) get(i);
-            /*aux = this.inicio;
-            while (aux != this.fim) {
-                i =  aux.getImovel();
-                if (i.getCodigo() == im.getCodigo()) {
-                    break;
-                }
-                aux = aux.getProximo();
-            }
-            i = (Imovel) aux.getImovel();
-            if (i.getCodigo() == im.getCodigo()) {*/
-          /**  No anterior = aux.getAnterior();
-            No proximo = aux.getProximo();
-            anterior.setProximo(proximo);
-            proximo.setAnterior(anterior);
-            this.size--;
-            this.decrementarLista(proximo);
-            return (T) aux;
-        }
-
-    }
-*/
-    
     
     /**
     * Método que remove um imovel da lista
@@ -320,9 +317,12 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
                 return (T) aux;                
     }
     
-    
+    /**
+     * 
+     * @param o
+     * @return 
+     */
     @Override
-
     public int indexOf(Object o) {
 
         if (o == null) {
@@ -367,8 +367,6 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
 
     }
 
-    
-
     /**
      * Método que decrementa a Lista
      *
@@ -402,7 +400,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         aux.decrementarIndice();
 
     }
-
+    
     @Override
     public boolean hasNext() {
         return indice < size;
