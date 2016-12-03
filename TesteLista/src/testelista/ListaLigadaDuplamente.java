@@ -73,7 +73,16 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     public <T> T[] toArray(T[] ts) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    /**
+    * Metodo que adciona objetos na lista a partir do zero
+    * Adiciona mesmo que nao tenha nada na lista ainda
+    * Verifica se existe um objeto na lista,
+    * se não existe ele cria.
+    * Se já existe ele adciona no final da lista.
+    * @param e
+    * @return 
+    */
     @Override
     public boolean add(T e) {
         No aux;
@@ -252,12 +261,12 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
 
     }
 
- /**
- * Metodo que funciona se ja existe algum objeto na lista de imoveis
- * 
- * @param index
- * @param element 
- */
+    /**
+    * Metodo que funciona se ja existe algum objeto na lista de imoveis
+    * 
+    * @param index
+    * @param element 
+    */
     @Override
     public void add(int index, T element) {
         int numElements = 0;
@@ -308,12 +317,12 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
 */
     
     
- /**
- * Método que remove um imovel da lista
- * @param index
- * @return 
- *  
- */
+    /**
+    * Método que remove um imovel da lista
+    * @param index
+    * @return 
+    *  
+    */
     @Override
     public T remove(int index) {
         No aux = this.inicio;
