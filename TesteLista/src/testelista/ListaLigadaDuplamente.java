@@ -156,15 +156,18 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Método que pega o Imovel da lista e retorna ele
+     * @param index
+     * @return imovel
+     */ 
     @Override
     public T get(int i) {
         No aux = this.getInicio();
 
         for (int j = 0; j < getIndice(); j++) {
             aux = aux.getProximo();
-
         }
-
         return (T) aux;
     }
 
@@ -254,7 +257,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    /*@Override
     public T remove(int i) {
         T aux1;
         No aux = null;
@@ -272,7 +275,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             }
             i = (Imovel) aux.getImovel();
             if (i.getCodigo() == im.getCodigo()) {*/
-            No anterior = aux.getAnterior();
+          /**  No anterior = aux.getAnterior();
             No proximo = aux.getProximo();
             anterior.setProximo(proximo);
             proximo.setAnterior(anterior);
@@ -282,7 +285,44 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
         }
 
     }
-
+*/
+    
+    
+ /**
+ * Método que remove um imovel da lista
+ * @param index
+ * @return 
+ *  
+ */
+    @Override
+    public T remove(int index) {
+        No aux = this.inicio;
+        Object aux1;
+        if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException("" + index);
+		}
+		if(size() == 1){
+                    aux1 = inicio.getInfo();
+                    setInicio(null);
+                    setFim(null);
+                    inicio.setProximo(null);
+                    inicio.setAnterior(null);
+                    fim.setAnterior(null);
+                    fim.setProximo(null);
+                           
+                } else{
+                     
+                    for (int i=0; i<index; i++) {
+                        aux=aux.getProximo();
+                    }                   
+                    aux.setProximo(aux.getAnterior());
+                    aux.setAnterior(aux.getProximo());
+                    
+                    }
+                return (T) aux;                
+    }
+    
+    
     @Override
 
     public int indexOf(Object o) {
