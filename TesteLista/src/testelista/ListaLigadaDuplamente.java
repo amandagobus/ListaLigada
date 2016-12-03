@@ -249,7 +249,9 @@ public class ListaLigadaDuplamente<T> implements List<T> {
             obj = aux.getInfo();
             aux.setInfo(e);
             return (T) obj;
-        } }
+        } 
+        
+        }
 
     @Override
         public void add(int i, T e) {
@@ -284,6 +286,7 @@ public class ListaLigadaDuplamente<T> implements List<T> {
          }
         
     }
+        
 
     @Override
         public int indexOf(Object o) {
