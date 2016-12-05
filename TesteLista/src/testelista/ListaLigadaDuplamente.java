@@ -13,8 +13,8 @@ import java.util.ListIterator;
  */
 public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator {
 
-    private No inicio;
-    private No fim;
+    private No<T> inicio;
+    private No<T> fim;
     private int indice;
     private int size;
 
@@ -46,13 +46,13 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     @Override
     public boolean contains(Object o) {
 
-        No p = new No(null);
+        No<T> p = new No(null);
 
         if (o == null) {
 
             throw new NullPointerException("Objeto é nulo, não é possivél verificar na lista.");
         } else {
-            No aux = this.inicio;
+            No<T> aux = this.inicio;
             while ((aux != null) || (aux.getProximo() != this.inicio)) {
                 if (aux.getInfo() == o) {
                     return true;
@@ -82,7 +82,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     */
     @Override
     public boolean add(T e) {
-        No aux;
+        No<T> aux;
         if (!this.isEmpty()) {
             aux = new No(getIndice(), e, getInicio(), getFim());
             this.getFim().setProximo(aux);
@@ -103,7 +103,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     @Override
     public boolean remove(Object o) {
 
-        No aux;
+        No<T> aux;
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
@@ -111,16 +111,16 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             aux = this.inicio;
             while (aux != this.fim) {
                 if (o == aux.getInfo()) {
-                    No anterior = null;
-                    No proximo = null;
+                    No<T> anterior = null;
+                    No<T> proximo = null;
                 } else {
 
                     aux = aux.getProximo();
 
                 }
 
-                No anterior = aux.getAnterior();
-                No proximo = aux.getProximo();
+                No<T> anterior = aux.getAnterior();
+                No<T> proximo = aux.getProximo();
                 anterior.setProximo(proximo);
                 proximo.setAnterior(anterior);
                 this.size--;
@@ -135,17 +135,19 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
     
     /**
      * Método que pega o Imovel da lista e retorna ele
-     * @param index
+     * @param i
      * @return imovel
      */ 
     @Override
     public T get(int i) {
-        No aux = this.getInicio();
+        
+        //falta tratar as Execptions IndexOfOut..
+        No<T> aux = this.getInicio();
 
-        for (int j = 0; j < getIndice(); j++) {
+        for (int j = 0; j < i; j++) {
             aux = aux.getProximo();
         }
-        return (T) aux;
+        return (T) aux.getInfo();
     }
 
     /**
@@ -216,8 +218,8 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             throw new IndexOutOfBoundsException("Valor fora do intervalo válido.");
 
         } else {
-            No aux = this.getInicio();
-            Object obj;
+            No<T> aux = this.getInicio();
+            T obj;
 
             for (int j = 0; j < i; j++) {
                 aux = aux.getAnterior();
@@ -225,7 +227,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
             }
             obj = aux.getInfo();
             aux.setInfo(e);
-            return (T) obj;
+            return obj;
         }
 
     }
@@ -247,7 +249,7 @@ public class ListaLigadaDuplamente<T> implements List<T>, Serializable, Iterator
 			add(element);
 			return;
 		}
-                No aux = new No(indice, element, this.fim.getProximo(), this.fim);
+                No<T> aux = new No(indice, element, this.fim.getProximo(), this.fim);
                 this.fim.setProximo(aux);
                 this.fim = aux;
                 this.inicio.setAnterior(fim);
